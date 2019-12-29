@@ -1,4 +1,4 @@
-from odoo.odoo import fields, models
+from odoo import fields, models
 
 class ACourse(models.Model):
     _name = 'openacademy.course.model'
