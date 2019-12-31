@@ -1,4 +1,4 @@
-from odoo.odoo import fields, models
+from odoo import fields, models
 
 class ASession(models.Model):
     _name = 'openacademy.session.model'
