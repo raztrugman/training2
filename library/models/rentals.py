@@ -3,6 +3,7 @@ from odoo import fields, models
 
 class Rentals(models.Model):
     _name = 'library.rentals'
+    _description = "Rental"
 
     book_id = fields.Many2many('library.books', 'Book')
     customer_id = fields.Many2many('library.partners', 'Customer')

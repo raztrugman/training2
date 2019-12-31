@@ -3,6 +3,7 @@ from odoo import fields, models
 
 class Partners(models.Model):
     _name = "library.partners"
+    _description = "Partner"
 
     name = fields.Char()
     email = fields.Char()

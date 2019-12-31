@@ -3,6 +3,7 @@ from odoo import fields, models
 
 class Books(models.Model):
     _name = "library.books"
+    _description = "Books"
 
     name = fields.Char(string="Book Title")
     author_ids = fields.Many2many("library.partners", string='Authors')
