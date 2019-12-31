@@ -1,10 +1,10 @@
 from odoo import fields, models
 
-class ASession(models.Model):
-    _name = 'openacademy.session.model'
-    
-    session_date = fields.Char()
+class Partner(models.Model):
+    _name = 'openacademy.partner'
+    _description = 'Partner'
 
-    course_id = fields.Many2one('course.model')
-    instructor_id = fields.Many2one('instructor.model')
-    active_session = fields.Boolean()
+    name = fields.Char()
+
+    instructor = fields.Boolean(default=False)
+    session_ids = fields.Many2many('openacademy.session', string="Attended Sessions", readonly=True)
