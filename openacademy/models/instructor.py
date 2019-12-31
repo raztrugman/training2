@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo.odoo import fields, models
+
 
 class AInstructor(models.Model):
     _name = 'openacademy.instructor.model'
@@ -6,4 +7,3 @@ class AInstructor(models.Model):
     instructor_name = fields.Char()
 
     session_ids = fields.One2many('session.model')
-    
