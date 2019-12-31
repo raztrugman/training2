@@ -1,8 +1,10 @@
 from odoo import fields, models
 
-class AInstructor(models.Model):
-    _name = 'openacademy.instructor.model'
-    
-    instructor_name = fields.Char()
+class Partner(models.Model):
+    _name = 'openacademy.partner'
+    _description = 'Partner'
 
-    session_ids = fields.One2many('session.model')
+    name = fields.Char()
+
+    instructor = fields.Boolean(default=False)
+    session_ids = fields.Many2many('openacademy.session', string="Attended Sessions", readonly=True)
