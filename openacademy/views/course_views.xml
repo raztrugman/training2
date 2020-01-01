@@ -27,4 +27,9 @@
             </form>
         </field>
     </record>
+
+
+    <menuitem name="inside" id="number2" parent="contacts.res_partner_menu_contacts"/>
+
+
 </odoo>
