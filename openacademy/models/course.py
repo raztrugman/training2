@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models, api
+from odoo.odoo import fields, models, api, exceptions
 
 
 class Course(models.Model):
@@ -44,3 +44,14 @@ class Session(models.Model):
 
 
 
+    @api.constrains('number_of_seats', 'attendee_ids')
+    def _check_taken_seats(self):
+        NUMBER_OF_MAX_SEATS = 50
+        for session in self:
+            if session.number_of_taken_seats > NUMBER_OF_MAX_SEATS:
+                raise exceptions.ValidationError('The room has %s available seats and there is %s attendees registered' % (session.number_of_seats, len(session.attendee_ids)))
+
+
+    _sql_constraints =  [
+        ('Session full','CHECK(number_of_taken_seats<=50)','The classroom is full')
+    ]
