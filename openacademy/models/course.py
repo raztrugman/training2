@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo.odoo import fields, models, api
 
 
 class Course(models.Model):
@@ -29,3 +29,18 @@ class Session(models.Model):
     instructor_id = fields.Many2one('openacademy.partner', string="Instructor")
     course_id = fields.Many2one('openacademy.course', ondelete='cascade', string="Course", required=True)
     attendee_ids = fields.Many2many('openacademy.partner', string="Attendees")
+
+    number_of_seats = fields.Integer()
+
+    number_of_taken_seats = fields.Integer(compute='_check_max_capacity_for_session', store=True)
+
+    @api.depends('number_of_seats', 'attendee_ids')
+    def _check_max_capacity_for_session(self):
+        for session in self:
+            if not session.number_of_seats:
+                session.number_of_taken_seats = 0
+            else:
+                session.number_of_taken_seats = len(session.attendee_ids)
+
+
+
