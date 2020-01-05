@@ -6,13 +6,13 @@ class Course(models.Model):
     _name = 'openacademy.course'
     _description = 'Course'
 
-    name = fields.Char(string='Title', required=True)
+    name = fields.Char(name='Title', required=True)
     description = fields.Text()
 
-    responsible_id = fields.Many2one('res.partner', ondelete='set null', string="Responsible")
+    responsible_id = fields.Many2one('res.users', ondelete='set null', string="Responsible")
     session_ids = fields.One2many('openacademy.session', 'course_id', string="Sessions")
 
-    level = fields.Selection([('1', 'Easy'), ('2', 'Medium'), ('3', 'Hard')], string="Difficulty Level")
+    level = fields.Selection([(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
     session_count = fields.Integer(compute="_compute_session_count")
 
     @api.depends('session_ids')
